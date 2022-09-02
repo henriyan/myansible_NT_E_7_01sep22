@@ -1,0 +1,16 @@
+---
+- mystudents : 
+  - name: anil
+    phone: 87389726829
+    address: hyd
+
+  - name: sunil
+    phone: 2839002990087
+    address: hyd
+
+  - name: venil
+    phone: 90886550
+    address: 
+      doorno: 786
+      street: 16
+      pincode: 4556653
