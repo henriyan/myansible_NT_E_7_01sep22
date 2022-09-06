@@ -6,3 +6,7 @@
 172.31.29.8
 
 [myapplicationservers]
+
+[mywebservers :vars]
+mywebpackonubuntu=apache2
+mywebpackonredhat=httpd
