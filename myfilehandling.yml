@@ -2,7 +2,37 @@
 -  hosts: 172.31.44.8
    become : yes
    tasks:
-   - name: create a file
-     file: 
-       path: /home/ubuntu/mytestfile
-       state: touch
+    - include_tasks: myfile2.yml
+    - name: create myfolder
+      file:
+        path: /home/ubuntu/myfolder
+        state: directory
+
+    - name: copy file to master node side
+      copy:
+        src: my2file.txt
+        dest: /home/ubuntu/my2file
+
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present
+
+    # - name: download remote(internet file)
+    #   get_url:
+    #     get_url:
+    #     dest: /home/ubuntu/my2file
+    #     force_basic_auth: yes
+
+    - name: copy dynamic file into node side
+      template:
+          src: myindex.j2
+          dest: /var/www/html/index.html
+      notify:
+      - restartwebserver
+
+   handlers:
+    - name: restartwebserver
+      service:
+        name: apache2
+        state: restarted
